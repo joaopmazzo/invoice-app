@@ -1,0 +1,322 @@
+<div class="flex flex-col h-screen dark:bg-12">
+  <header class="py-9 px-14 rounded-br-3xl custom-shadow">
+    <p
+      class="text-headingM font-bold leading-headingM tracking-headingM text-08 dark:text-11 !mb-0"
+    >
+      New Invoice
+    </p>
+  </header>
+
+  <!-- <div class="scroll-container scrollGradient">
+    <div class="h-full overflow-auto"> -->
+  <form
+    #scrollContainer
+    [formGroup]="form"
+    class="ml-14 mr-8 py-5 pr-4 flex flex-col gap-12 overflow-auto scroll-content h-full"
+  >
+    <div>
+      <p
+        class="text-headingS leading-headingS tracking-headingS text-01 font-bold"
+      >
+        Bill From
+      </p>
+      <div class="grid grid-cols-6 gap-6">
+        <app-input-field
+          class="col-span-6"
+          fieldName="streetAddressFrom"
+          label="Street Address"
+          type="text"
+          [maxLength]="200"
+          [required]="true"
+          [control]="getFormControl('streetAddressFrom')"
+        />
+
+        <app-input-field
+          class="col-span-2"
+          fieldName="cityFrom"
+          label="City"
+          type="text"
+          [maxLength]="50"
+          [required]="true"
+          [control]="getFormControl('cityFrom')"
+        />
+        <app-input-field
+          class="col-span-2"
+          fieldName="postCodeFrom"
+          label="Post Code"
+          type="text"
+          [maxLength]="50"
+          [required]="true"
+          [control]="getFormControl('postCodeFrom')"
+        />
+        <app-input-field
+          class="col-span-2"
+          fieldName="countryFrom"
+          label="Country"
+          type="text"
+          [maxLength]="100"
+          [required]="true"
+          [control]="getFormControl('countryFrom')"
+        />
+      </div>
+    </div>
+
+    <div>
+      <p
+        class="text-headingS leading-headingS tracking-headingS text-01 font-bold"
+      >
+        Bill To
+      </p>
+      <div class="grid grid-cols-6 gap-6">
+        <app-input-field
+          class="col-span-6"
+          fieldName="clientName"
+          label="Client's Name"
+          type="text"
+          [maxLength]="100"
+          [required]="true"
+          [control]="getFormControl('clientName')"
+        />
+
+        <app-input-field
+          class="col-span-6"
+          fieldName="clientEmail"
+          label="Client's Email"
+          type="text"
+          placeholder="e.g email@example.com"
+          [maxLength]="100"
+          [required]="true"
+          [control]="getFormControl('clientEmail')"
+        />
+
+        <app-input-field
+          class="col-span-6"
+          fieldName="clientStreetAddress"
+          label="Street Address"
+          type="text"
+          [maxLength]="100"
+          [required]="true"
+          [control]="getFormControl('clientStreetAddress')"
+        />
+
+        <app-input-field
+          class="col-span-2"
+          fieldName="clientCity"
+          label="City"
+          type="text"
+          [maxLength]="100"
+          [required]="true"
+          [control]="getFormControl('clientCity')"
+        />
+        <app-input-field
+          class="col-span-2"
+          fieldName="clientPostCode"
+          label="Post Code"
+          type="text"
+          [maxLength]="100"
+          [required]="true"
+          [control]="getFormControl('clientPostCode')"
+        />
+        <app-input-field
+          class="col-span-2"
+          fieldName="clientCountry"
+          label="Country"
+          type="text"
+          [maxLength]="100"
+          [required]="true"
+          [control]="getFormControl('clientCountry')"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-6 gap-6">
+      <app-input-field
+        class="col-span-3"
+        fieldName="invoiceDate"
+        label="Invoice Date"
+        type="date"
+        [maxLength]="100"
+        [required]="true"
+        [control]="getFormControl('invoiceDate')"
+      />
+
+      <app-input-field
+        class="col-span-3"
+        fieldName="paymentTerms"
+        label="Payment Terms"
+        type="text"
+        [maxLength]="100"
+        [required]="true"
+        [control]="getFormControl('paymentTerms')"
+      />
+
+      <app-input-field
+        class="col-span-6"
+        fieldName="projectDescription"
+        label="Project Description"
+        type="text"
+        placeholder="e.g Graphic Design Service"
+        [maxLength]="100"
+        [required]="true"
+        [control]="getFormControl('projectDescription')"
+      />
+    </div>
+
+    <div>
+      <p class="text-lg leading-8 -tracking-[0.38px] text-07 font-bold">
+        Item List
+      </p>
+
+      <div class="grid grid-cols-12 gap-6">
+        <label
+          for="itemName"
+          class="col-span-4 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05"
+        >
+          Item Name
+        </label>
+        <label
+          for="quantity"
+          class="col-span-2 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05"
+        >
+          Qty.
+        </label>
+        <label
+          for="price"
+          class="col-span-3 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05"
+        >
+          Price
+        </label>
+        <label
+          for="total"
+          class="col-span-2 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05"
+        >
+          Total
+        </label>
+
+        @for (item of itemListFormArray.controls; track item; let index =
+        $index) {
+        <div class="col-span-12 grid grid-cols-12 gap-6 items-center">
+          <app-input-field
+            class="col-span-4"
+            fieldName="itemName"
+            type="text"
+            [maxLength]="100"
+            [required]="true"
+            [control]="getAddressControl(index, 'itemName')"
+          />
+          <app-input-field
+            class="col-span-2"
+            fieldName="quantity"
+            type="number"
+            [maxLength]="3"
+            [required]="true"
+            [control]="getAddressControl(index, 'quantity')"
+          />
+          <app-input-field
+            class="col-span-3"
+            fieldName="price"
+            type="money"
+            [maxLength]="7"
+            [required]="true"
+            [control]="getAddressControl(index, 'price')"
+          />
+          <span class="col-span-2 dark:text-05">valor</span>
+          <button
+            class="text-06 hover:text-09"
+            mat-mini-fab
+            aria-label="delete item"
+            (click)="removeItemList(index)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        }
+
+        <app-button
+          variant="light-variant"
+          buttonText="+ Add New Item"
+          class="col-span-12"
+          (click)="addItemList()"
+        ></app-button>
+      </div>
+      @if (itemListFormArray.hasError('minLength')) {
+      <p class="error">At least one address is required.</p>
+      } @else if (itemListFormArray.invalid && (itemListFormArray.touched ||
+      itemListFormArray.dirty)) {
+      <p class="error">Please fill in all items address fields.</p>
+      }
+    </div>
+  </form>
+  <!-- </div>
+  </div> -->
+
+  <footer
+    class="pt-10 pb-8 px-14 rounded-tr-3xl custom-shadow flex items-center justify-between"
+  >
+    <app-button buttonText="Discard" variant="light" />
+    <div class="grid grid-cols-2 gap-2">
+      <app-button buttonText="Save as Draft" variant="secondary" />
+      <app-button
+        type="submit"
+        buttonText="Save & Send"
+        variant="primary"
+        (click)="onSubmit()"
+      />
+    </div>
+  </footer>
+</div>
+
+<style>
+  /* good ideia, but I can'n implement in the way i want (the inputs keep above the shadow) */
+  .scrollGradient {
+    background: linear-gradient(#ffffff 33%, rgba(255, 255, 255, 0)),
+      linear-gradient(rgba(255, 255, 255, 0), #ffffff 66%) 0 100%,
+      radial-gradient(
+        farthest-side at 50% 0,
+        rgba(173, 173, 173, 0.5),
+        rgba(0, 0, 0, 0)
+      ),
+      radial-gradient(
+          farthest-side at 50% 100%,
+          rgba(173, 173, 173, 0.5),
+          rgba(0, 0, 0, 0)
+        )
+        0 100%;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
+    background-size: 100% 150px, 100% 150px, 100% 50px, 100% 50px;
+  }
+
+  /* .scroll-container {
+  position: relative;
+  height: 100%; 
+  overflow: hidden;
+}
+
+.scroll-container::before,
+.scroll-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 15px; 
+  z-index: 10;
+  pointer-events: none;
+}
+
+.scroll-container::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.04), transparent);
+}
+
+.scroll-container::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.04), transparent);
+} */
+
+  .custom-shadow {
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05),
+      /* Top shadow */ 0px 4px 6px rgba(0, 0, 0, 0.05); /* Bottom shadow */
+  }
+</style>

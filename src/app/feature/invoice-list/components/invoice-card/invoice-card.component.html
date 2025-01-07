@@ -1,0 +1,32 @@
+<div
+  class="py-4 pl-8 pr-6 w-full flex flex-row items-center justify-between bg-white dark:bg-03 rounded-lg drop-shadow-sm shadow-07 cursor-pointer border border-transparent hover:border-01"
+  (click)="this.navigateToInvoiceDetails(invoiceId)"
+>
+  <div class="flex flex-row items-center gap-11 w-full">
+    <p
+      class="max-w-16 w-full text-headingSVariant font-bold leading-headingSVariant tracking-headingSVariant text-08 dark:text-11 !mb-0"
+    >
+      <span class="text-07">#</span>{{ invoiceId }}
+    </p>
+    <p
+      class="max-w-24 w-full text-body font-medium leading-body tracking-body text-07 dark:text-05 !mb-0"
+    >
+      Due {{ this.formatDateToString(invoiceDate) }}
+    </p>
+    <p
+      class="text-body font-medium leading-body tracking-body text-07 dark:text-11 !mb-0"
+    >
+      {{ invoiceClientName }}
+    </p>
+  </div>
+
+  <div class="flex flex-row items-center gap-10">
+    <p
+      class="text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11 first-letter:mr-1 !mb-0"
+    >
+      {{ this.formatCurrencyToString(invoiceTotalPrice) }}
+    </p>
+    <app-status-indicator [invoiceStatus]="invoiceStatus" />
+    <img src="/assets/icon-arrow-right.svg" alt="arrow pointing right" />
+  </div>
+</div>

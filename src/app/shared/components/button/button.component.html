@@ -1,0 +1,17 @@
+<button [class]="buttonClasses" [type]="type">
+  @if (iconSrc) {
+  <span
+    class="w-8 h-8 my-2 ml-2 bg-11 flex items-center justify-center rounded-full"
+  >
+    <img [src]="iconSrc" [alt]="iconAlt ?? ''" />
+  </span>
+  }
+  <span
+    class="text-headingSVariant font-bold leading-headingSVariant tracking-headingSVariant"
+    [class.py-4]="!iconSrc"
+    [class.px-6]="!iconSrc"
+    [class.pr-4]="iconSrc"
+  >
+    {{ buttonText }}
+  </span>
+</button>

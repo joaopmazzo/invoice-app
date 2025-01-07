@@ -1,0 +1,67 @@
+<div class="flex justify-between w-full">
+  <div class="flex flex-col">
+    <span
+      class="text-headingL font-bold leading-headingL tracking-headingL text-08 dark:text-11"
+    >
+      Invoices
+    </span>
+    <span
+      class="text-bodyVariant font-medium leading-bodyVariant tracking-bodyVariant text-06 dark:text-05"
+    >
+      {{ this.getTotalInvoiceText() }}
+    </span>
+  </div>
+
+  <div class="flex flex-row gap-10 items-center">
+    <div>
+      <span
+        [matMenuTriggerFor]="menu"
+        aria-label="filter by status"
+        class="flex itens-center gap-4 font-Spartan text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11 hover:cursor-pointer"
+      >
+        Filter by status
+        <mat-icon class="text-01">expand_more</mat-icon>
+      </span>
+      <mat-menu
+        #menu="matMenu"
+        xPosition="before"
+        class="mt-5 px-6 rounded-lg -mr-10 dark:bg-04"
+      >
+        <section
+          [formGroup]="filterByStatus"
+          (click)="$event.stopPropagation()"
+          class="flex flex-col w-48"
+        >
+          <mat-checkbox color="primary" formControlName="draft">
+            <span
+              class="font-Spartan text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11"
+            >
+              Draft
+            </span>
+          </mat-checkbox>
+          <mat-checkbox color="primary" formControlName="pending">
+            <span
+              class="font-Spartan text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11"
+            >
+              Pending
+            </span>
+          </mat-checkbox>
+          <mat-checkbox color="primary" formControlName="paid">
+            <span
+              class="font-Spartan text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11"
+            >
+              Paid
+            </span>
+          </mat-checkbox>
+        </section>
+      </mat-menu>
+    </div>
+
+    <app-button
+      iconSrc="/assets/icon-plus.svg"
+      iconAlt="Plus icon"
+      buttonText="New Invoice"
+      (click)="emitSidenavToggle()"
+    />
+  </div>
+</div>

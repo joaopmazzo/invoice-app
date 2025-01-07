@@ -1,0 +1,58 @@
+<div class="flex flex-col gap-2">
+  @if (label) {
+  <div
+    class="flex items-center"
+    [class.justify-between]="internalControl.touched && internalControl.invalid"
+  >
+    <label
+      [for]="fieldName"
+      class="text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05"
+      [ngClass]="{
+        'text-09 dark:text-09':
+          internalControl.touched && internalControl.invalid
+      }"
+    >
+      {{ label }}
+      @if (required) {
+      <span class="text-09">*</span>
+      }
+    </label>
+
+    @if (internalControl.touched && internalControl.invalid) {
+    <span
+      class="text-bodyVariant font-semibold leading-bodyVariant tracking-bodyVariant text-09"
+      >{{ getErrorMessage() }}</span
+    >
+    }
+  </div>
+  }
+  <div class="flex flex-col">
+    <input
+      [type]="type"
+      [name]="fieldName"
+      [id]="fieldName"
+      [placeholder]="placeholder"
+      [minlength]="minLength"
+      [maxlength]="maxLength"
+      [pattern]="pattern"
+      [formControl]="internalControl"
+      (input)="onInputChange($event)"
+      (blur)="onTouched()"
+      class="px-5 py-4 rounded dark:bg-03 border border-05 focus:border-02 dark:focus:border-02 focus:outline-none text-headingSVariant leading-headingSVariant tracking-headingSVariant text-08 dark:text-11 font-bold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+      [ngClass]="{
+        'border-09 dark:border-09':
+          internalControl.touched && internalControl.invalid,
+        'dark:border-transparent': !(
+          internalControl.touched && internalControl.invalid
+        )
+      }"
+    />
+  </div>
+</div>
+
+<style>
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(70%) sepia(12%) saturate(544%) hue-rotate(190deg)
+      brightness(89%);
+  }
+</style>

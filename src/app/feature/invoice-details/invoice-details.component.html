@@ -1,0 +1,172 @@
+<main class="absolute w-full font-Spartan">
+  <div class="mx-auto max-w-[720px] w-full mt-16 mb-10">
+    <div
+      class="inline-flex items-center gap-6 cursor-pointer"
+      (click)="this.navigateToInvoiceList()"
+    >
+      <img src="/assets/icon-arrow-left.svg" alt="arrow pointing left" />
+      <p
+        class="text-headingSVariant font-bold leading-headingSVariant tracking-headingSVariant text-08 dark:text-11 !mb-0"
+      >
+        Go back
+      </p>
+    </div>
+
+    <div
+      class="mt-8 px-8 py-5 w-full bg-white dark:bg-03 flex flex-row justify-between rounded-lg drop-shadow-sm"
+    >
+      <div class="inline-flex items-center gap-5">
+        <p
+          class="text-body font-medium leading-body tracking-body text-06 dark:text-05 !mb-0"
+        >
+          Status
+        </p>
+        <app-status-indicator [invoiceStatus]="0" />
+      </div>
+
+      <div class="flex items-center gap-2">
+        <app-button buttonText="Edit" variant="light-variant" />
+        <app-button buttonText="Delete" variant="danger" />
+        <app-button buttonText="Mark as Paid" variant="primary" />
+      </div>
+    </div>
+
+    <div
+      class="mt-6 p-12 w-full max-h-[630px] bg-white dark:bg-03 flex flex-col rounded-lg drop-shadow-sm"
+    >
+      <div class="inline-flex justify-between">
+        <div class="[&>*]:!mb-0">
+          <p
+            class="text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11"
+          >
+            <span class="text-06">#</span>XM9141
+          </p>
+          <p
+            class="text-body font-medium leading-body tracking-body text-06 dark:text-05"
+          >
+            Graphic Design
+          </p>
+        </div>
+
+        <div
+          class="text-body font-medium leading-body tracking-body text-07 dark:text-05 text-end [&>*]:!mb-0"
+        >
+          <p>19 Union Terrace</p>
+          <p>London</p>
+          <p>E1 3EZ</p>
+          <p>United Kingdom</p>
+        </div>
+      </div>
+
+      <div class="mt-5 grid grid-cols-7">
+        <div class="col-span-2">
+          <p
+            class="text-body font-medium leading-body tracking-body text-06 dark:text-05"
+          >
+            Invoice Date
+          </p>
+          <p
+            class="text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11"
+          >
+            <span class="text-06">#</span>21 Aug 2021
+          </p>
+        </div>
+        <div class="col-span-2">
+          <p
+            class="text-body font-medium leading-body tracking-body text-06 dark:text-05"
+          >
+            Invoice Date
+          </p>
+          <p
+            class="text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11"
+          >
+            <span class="text-06">#</span>21 Aug 2021
+          </p>
+        </div>
+        <div class="col-span-2">
+          <p
+            class="text-body font-medium leading-body tracking-body text-06 dark:text-05"
+          >
+            Invoice Date
+          </p>
+          <p
+            class="text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11"
+          >
+            <span class="text-06">#</span>21 Aug 2021
+          </p>
+        </div>
+        <div class="col-span-2">
+          <p
+            class="text-body font-medium leading-body tracking-body text-06 dark:text-05"
+          >
+            Invoice Date
+          </p>
+          <p
+            class="text-headingS font-bold leading-headingS tracking-headingS text-08 dark:text-11 !mb-0"
+          >
+            <span class="text-06">#</span>21 Aug 2021
+          </p>
+        </div>
+
+        <div
+          class="text-body font-medium leading-body tracking-body text-07 dark:text-05 [&>*]:!mb-0"
+        >
+          <p>19 Union Terrace</p>
+          <p>London</p>
+          <p>E1 3EZ</p>
+          <p>United Kingdom</p>
+        </div>
+      </div>
+
+      <div class="mt-10 px-8 py-9 bg-11 dark:bg-04 rounded-t-lg">
+        <div class="grid grid-cols-12">
+          <p
+            class="col-span-7 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05"
+          >
+            Item Name
+          </p>
+          <p
+            class="col-span-1 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05 text-center"
+          >
+            Qty.
+          </p>
+          <p
+            class="col-span-2 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05 text-end"
+          >
+            Price
+          </p>
+          <p
+            class="col-span-2 text-headingSVariant leading-headingSVariant tracking-headingSVariant text-07 dark:text-05 text-end"
+          >
+            Total
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-col gap-8">
+          @for (item of itemListFormArray; track $index) {
+          <div
+            class="grid grid-cols-12 text-headingSVariant font-bold leading-headingSVariant tracking-headingSVariant [&>*]:!mb-0"
+          >
+            <p class="col-span-7 text-08 dark:text-11">Email Design</p>
+            <p class="col-span-1 text-07 dark:text-05 text-center">2</p>
+            <p class="col-span-2 text-07 dark:text-05 text-end">$ 200.00</p>
+            <p class="col-span-2 text-08 dark:text-11 text-end">$ 400.00</p>
+          </div>
+          }
+        </div>
+      </div>
+      <div
+        class="px-8 py-7 inline-flex items-center justify-between bg-[#373B53] dark:bg-08 rounded-b-lg [&>*]:!mb-0"
+      >
+        <p class="text-body font-medium leading-body tracking-body text-11">
+          Amount Due
+        </p>
+        <p
+          class="text-headingM font-bold leading-headingM tracking-headingM text-11"
+        >
+          $ 556.00
+        </p>
+      </div>
+    </div>
+  </div>
+</main>

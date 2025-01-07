@@ -1,0 +1,23 @@
+<div
+  class="w-[104px] h-10 inline-flex items-center justify-center bg-opacity-5 dark:bg-opacity-5 gap-2 rounded-md"
+  [class.bg-status-paid]="invoiceStatus === status.PAID"
+  [class.bg-status-pending]="invoiceStatus === status.PENDING"
+  [ngClass]="{ 'bg-status-draft dark:bg-05': invoiceStatus === status.DRAFT }"
+>
+  <div
+    class="w-2 h-2 rounded-full"
+    [class.bg-status-paid]="invoiceStatus === status.PAID"
+    [class.bg-status-pending]="invoiceStatus === status.PENDING"
+    [ngClass]="{ 'bg-status-draft dark:bg-05': invoiceStatus === status.DRAFT }"
+  ></div>
+  <span
+    class="text-sm font-medium first-letter:uppercase lowercase"
+    [class.text-status-paid]="invoiceStatus === status.PAID"
+    [class.text-status-pending]="invoiceStatus === status.PENDING"
+    [ngClass]="{
+      'text-status-draft dark:text-05': invoiceStatus === status.DRAFT
+    }"
+  >
+    {{ status[invoiceStatus].toString() }}
+  </span>
+</div>
