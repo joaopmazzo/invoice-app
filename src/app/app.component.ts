@@ -7,6 +7,8 @@ import {
   signal,
 } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
+
 import { RouterOutlet } from '@angular/router';
 
 import * as jsonData from '../assets/data.json';
@@ -14,7 +16,7 @@ import { LocalStorageService } from './service/local-storage.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSidenavModule],
+  imports: [RouterOutlet, MatSidenavModule, AmplifyAuthenticatorModule],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
