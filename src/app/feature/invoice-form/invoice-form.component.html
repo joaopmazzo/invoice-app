@@ -82,7 +82,7 @@
           class="col-span-6"
           fieldName="clientEmail"
           label="Client's Email"
-          type="text"
+          type="email"
           placeholder="e.g email@example.com"
           [maxLength]="100"
           [required]="true"
@@ -202,15 +202,15 @@
             type="text"
             [maxLength]="100"
             [required]="true"
-            [control]="getAddressControl(index, 'itemName')"
+            [control]="getItemListControl(index, 'itemName')"
           />
           <app-input-field
             class="col-span-2"
             fieldName="quantity"
             type="number"
-            [maxLength]="3"
+            [min]="0.1"
             [required]="true"
-            [control]="getAddressControl(index, 'quantity')"
+            [control]="getItemListControl(index, 'quantity')"
           />
           <app-input-field
             class="col-span-3"
@@ -218,9 +218,11 @@
             type="money"
             [maxLength]="7"
             [required]="true"
-            [control]="getAddressControl(index, 'price')"
+            [control]="getItemListControl(index, 'price')"
           />
-          <span class="col-span-2 dark:text-05">valor</span>
+          <span class="col-span-2 dark:text-05">
+            {{ getItemListControl(index, "total").value }}
+          </span>
           <button
             class="text-06 hover:text-09"
             mat-mini-fab

@@ -37,19 +37,19 @@ export class InvoiceFormComponent {
 
   constructor(private fb: FormBuilder, private ngZone: NgZone) {
     this.form = this.fb.group({
-      streetAddressFrom: ['', Validators.required],
-      cityFrom: ['', Validators.required],
-      postCodeFrom: ['', Validators.required],
-      countryFrom: ['', Validators.required],
-      clientName: ['', Validators.required],
-      clientEmail: ['', [Validators.required, Validators.email]],
-      clientStreetAddress: ['', Validators.required],
-      clientCity: ['', Validators.required],
-      clientPostCode: ['', Validators.required],
-      clientCountry: ['', Validators.required],
-      invoiceDate: ['', Validators.required],
-      paymentTerms: ['', Validators.required],
-      projectDescription: ['', Validators.required],
+      streetAddressFrom: [null, Validators.required],
+      cityFrom: [null, Validators.required],
+      postCodeFrom: [null, Validators.required],
+      countryFrom: [null, Validators.required],
+      clientName: [null, Validators.required],
+      clientEmail: [null, [Validators.required, Validators.email]],
+      clientStreetAddress: [null, Validators.required],
+      clientCity: [null, Validators.required],
+      clientPostCode: [null, Validators.required],
+      clientCountry: [null, Validators.required],
+      invoiceDate: [null, Validators.required],
+      paymentTerms: [null, Validators.required],
+      projectDescription: [null, Validators.required],
       itemList: this.fb.array(
         [],
         [this.minLengthArray(1), this.validateItemList()]
@@ -63,10 +63,20 @@ export class InvoiceFormComponent {
 
   async addItemList(): Promise<void> {
     const itemListForm = this.fb.group({
-      itemName: ['', Validators.required],
-      quantity: ['', Validators.required],
-      price: ['', Validators.required],
+      itemName: [null, Validators.required],
+      quantity: [null, Validators.required],
+      price: [null, Validators.required],
+      total: [null, Validators.required],
     });
+
+    itemListForm.get('quantity')?.valueChanges.subscribe(() => {
+      this.updateItemTotal(itemListForm);
+    });
+
+    itemListForm.get('price')?.valueChanges.subscribe(() => {
+      this.updateItemTotal(itemListForm);
+    });
+
     this.itemListFormArray.push(itemListForm);
 
     // Use NgZone to ensure we're back in the Angular zone
@@ -79,6 +89,13 @@ export class InvoiceFormComponent {
     });
   }
 
+  private updateItemTotal(itemListForm: FormGroup): void {
+    const quantity = itemListForm.get('quantity')?.value || 0;
+    const price = itemListForm.get('price')?.value || 0;
+    const total = quantity * price;
+    itemListForm.get('total')?.setValue(total, { emitEvent: false });
+  }
+
   removeItemList(index: number): void {
     this.itemListFormArray.removeAt(index);
   }
@@ -87,7 +104,7 @@ export class InvoiceFormComponent {
     return this.form.get(name) as FormControl;
   }
 
-  getAddressControl(itemListIndex: number, controlName: string): FormControl {
+  getItemListControl(itemListIndex: number, controlName: string): FormControl {
     return this.itemListFormArray
       .at(itemListIndex)
       .get(controlName) as FormControl;
