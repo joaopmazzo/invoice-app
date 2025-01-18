@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
+import { InvoiceRepositoryService } from '../../service/invoice-repository.service';
 import { LocalStorageService } from '../../service/local-storage.service';
 import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 import { InvoiceCardComponent } from './components/invoice-card/invoice-card.component';
@@ -31,6 +32,7 @@ import { InvoiceListHeaderComponent } from './components/invoice-list-header/inv
 })
 export class InvoiceListComponent {
   private readonly _localStorageService = inject(LocalStorageService);
+  private _invoiceRepositoryService = inject(InvoiceRepositoryService);
 
   data = signal<any>(null);
 
