@@ -27,7 +27,6 @@
   </div>
   }
   <div class="flex flex-col">
-    @if (type === 'money') {
     <input
       [type]="type"
       [name]="fieldName"
@@ -35,39 +34,6 @@
       [placeholder]="placeholder"
       [minlength]="minLength"
       [maxlength]="maxLength"
-      [max]="max"
-      [min]="min"
-      [step]="step"
-      [pattern]="pattern"
-      [formControl]="internalControl"
-      (input)="onInputChange($event)"
-      (blur)="onTouched()"
-      class="px-5 py-4 rounded dark:bg-03 border border-05 focus:border-02 dark:focus:border-02 focus:outline-none text-headingSVariant leading-headingSVariant tracking-headingSVariant text-08 dark:text-11 font-bold [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-      [ngClass]="{
-        'border-09 dark:border-09':
-          internalControl.touched && internalControl.invalid,
-        'dark:border-transparent': !(
-          internalControl.touched && internalControl.invalid
-        )
-      }"
-      [currencyMask]="{
-        prefix: '$',
-        thousands: ',',
-        decimal: '.',
-        precision: 2
-      }"
-    />
-    } @else {
-    <input
-      [type]="type === 'money' ? 'number' : type"
-      [name]="fieldName"
-      [id]="fieldName"
-      [placeholder]="placeholder"
-      [minlength]="minLength"
-      [maxlength]="maxLength"
-      [max]="max"
-      [min]="min"
-      [step]="step"
       [pattern]="pattern"
       [formControl]="internalControl"
       (input)="onInputChange($event)"
@@ -81,7 +47,6 @@
         )
       }"
     />
-    }
   </div>
 </div>
 

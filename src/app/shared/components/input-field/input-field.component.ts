@@ -6,12 +6,11 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-input-field',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgxCurrencyDirective],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './input-field.component.html',
   providers: [
     {
@@ -32,9 +31,6 @@ export class InputFieldComponent implements ControlValueAccessor, OnInit {
   @Input() maxLength: number | null = null;
   @Input() pattern: string | RegExp = '';
   @Input() required: boolean = false;
-  @Input() max: number | null = null;
-  @Input() min: number | null = null;
-  @Input() step: number = 0.1;
   @Input() control?: FormControl;
 
   internalControl: FormControl = new FormControl('');
