@@ -14,7 +14,6 @@ frontend:
         - rm -rf package-lock.json
         - npm install
     build:
-    build:
       commands:
         - node -v
         - npm run build
