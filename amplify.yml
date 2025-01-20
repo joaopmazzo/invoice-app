@@ -10,7 +10,10 @@ frontend:
     preBuild:
       commands:
         - node -v
-        - npm ci --cache .npm --prefer-offline
+        - rm -rf node_modules
+        - rm -rf package-lock.json
+        - npm install
+    build:
     build:
       commands:
         - node -v
