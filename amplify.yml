@@ -3,8 +3,8 @@ backend:
   phases:
     build:
       commands:
-        - echo "Branch: $AWS_BRANCH"
-        - echo "App ID: $AWS_APP_ID"
+        - echo "Branch- $AWS_BRANCH"
+        - echo "App ID- $AWS_APP_ID"
         - npm install -g @aws-amplify/cli
         - amplify --version
         - npm ci --cache .npm --prefer-offline
