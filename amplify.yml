@@ -7,7 +7,11 @@ backend:
         - echo "App ID- $AWS_APP_ID"
         - npm install -g @aws-amplify/cli
         - amplify --version
-        - npm ci --cache .npm --prefer-offline
+        - |
+          if ! npm ci --cache .npm --prefer-offline; then
+            echo "npm ci failed, falling back to npm install"
+            npm install
+          fi
         - amplify push --yes
 frontend:
   phases:
